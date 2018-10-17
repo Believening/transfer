@@ -50,13 +50,12 @@ import (
 //	return
 //}
 
-//var l sync.Mutex
-var db [20][20][20][4]int
+var db [21][21][21][4]int
 
 func init() {
-	for i := 0; i < 20; i++ {
-		for j := 0; j < 20; j++ {
-			for k := 0; k < 20; k++ {
+	for i := 0; i < 21; i++ {
+		for j := 0; j < 21; j++ {
+			for k := 0; k < 21; k++ {
 				for q := 0; q < 4; q++ {
 					db[i][j][k][q] = -1
 				}
@@ -68,27 +67,6 @@ func init() {
 			db[0][0][0][i] = 0
 		} else {
 			db[0][0][0][i] = 1
-		}
-	}
-	for i := 0; i < 4; i++ {
-		if i == 1 {
-			db[1][0][0][i] = 0
-		} else {
-			db[1][0][0][i] = 1
-		}
-	}
-	for i := 0; i < 4; i++ {
-		if i == 2 {
-			db[0][1][0][i] = 0
-		} else {
-			db[0][1][0][i] = 1
-		}
-	}
-	for i := 0; i < 4; i++ {
-		if i == 3 {
-			db[0][0][1][i] = 0
-		} else {
-			db[0][0][1][i] = 1
 		}
 	}
 }
@@ -192,22 +170,6 @@ func main() {
 	}
 	//fmt.Scanf("%d%d%d", &m, &n, &k)
 	//var cnt int = 0
-	//ch := make(chan int, 3) // 多线程运行
-	//go func(c chan int) {
-	//	join(m-1, n, k, 'r', &cnt)
-	//	c <- 1
-	//}(ch)
-	//go func(c chan int) {
-	//	join(m, n-1, k, 'b', &cnt)
-	//	c <- 1
-	//}(ch)
-	//go func(c chan int) {
-	//	join(m, n, k-1, 'g', &cnt)
-	//	c <- 1
-	//}(ch)
-	//<-ch
-	//<-ch
-	//<-ch
 	//join(m-1, n, k, 'r', &cnt) //顺序运行
 	//join(m, n-1, k, 'b', &cnt)
 	//join(m, n, k-1, 'g', &cnt)
