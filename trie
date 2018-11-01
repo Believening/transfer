@@ -58,3 +58,54 @@ func addNumber(root *Node, n int) {
         }
     }    
 }
+
+//type node struct {
+//	c [2]*node
+//}
+//
+//type trie struct {
+//	root *node
+//}
+//
+//func newTrie() *trie {
+//	return &trie{
+//		root: &node{},
+//	}
+//}
+//
+//func (t *trie) insert(num int) {
+//	cur := t.root
+//	for i := 31; i >= 0; i-- {
+//		b := (num >> uint(i)) & 1
+//		if cur.c[b] == nil {
+//			cur.c[b] = new(node)
+//		}
+//		cur = cur.c[b]
+//	}
+//}
+//
+//func findMaximumXOR(nums []int) int {
+//	t := newTrie()
+//	for idx := range nums {
+//		t.insert(nums[idx])
+//	}
+//	max := -1
+//	for _, v := range nums {
+//		cur, sum := t.root, 0
+//		for i := 31; i >= 0; i-- {
+//			b := (v >> uint(i)) & 1
+//			if cur.c[(b+1)%2] != nil {
+//				sum += 1 << uint(i)
+//				cur = cur.c[(b+1)%2]
+//			} else if cur.c[b] != nil {
+//				cur = cur.c[b]
+//			} else {
+//				break
+//			}
+//		}
+//		if max < sum {
+//			max = sum
+//		}
+//	}
+//	return max
+//}
