@@ -1,0 +1,60 @@
+type Node struct {
+    zero *Node
+    one  *Node
+}
+
+func findMaximumXOR(nums []int) int {
+    var root Node
+    var max int
+    for _, n := range nums {        
+        addNumber(&root, n)       
+        
+        potential := 1<<31-1
+        node := &root
+        for bit := 1<<30; bit >= 1; bit >>= 1 {
+            if n&bit == 0 {
+                if node.one != nil {
+                    // there is a number with opposite bit, use it
+                    node = node.one
+                } else {
+                    // there's only a number with same bit, remove this bit from potential
+                    potential &^= bit
+                    node = node.zero
+                }
+            } else {
+                if node.zero != nil {
+                    // there is a number with opposite bit, use it
+                    node = node.zero
+                } else {
+                    // there's only a number with same bit, remove this bit from potential
+                    potential &^= bit
+                    node = node.one
+                }
+            }
+            if potential <= max {
+                break
+            }
+        }
+        if potential > max {
+            max = potential
+        }
+    }
+    return max
+}
+
+func addNumber(root *Node, n int) {
+    node := root
+    for bit := 1<<30; bit >= 1; bit >>= 1 {
+        if n&bit == 0 {
+            if node.zero == nil {
+                node.zero = new(Node)
+            }
+            node = node.zero
+        } else {
+            if node.one == nil {
+                node.one = new(Node)
+            }
+            node = node.one
+        }
+    }    
+}
