@@ -52,7 +52,3 @@ func canVisitAllRooms(rooms [][]int) bool {
 	}
 	return true
 }
-
-func main() {
-	
-}
