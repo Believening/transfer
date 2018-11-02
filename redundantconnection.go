@@ -51,6 +51,22 @@ func findRedundantConnection(edges [][]int) []int {
 	return ret
 }
 
+type simpleUnionSet struct {
+	set []int
+}
+
+func (s *simpleUnionSet) find(x int) int {
+	for s.set[x] != x {
+		x = s.set[x]
+		// s.set[x] = s.find(s.set[x]) // 将层数压缩
+	}
+	return x
+}
+
+func (s *simpleUnionSet) union(x, y int) {
+	s.set[s.find(y)] = s.find(x)
+}
+
 func main() {
 	ret := findRedundantConnection([][]int{
 		{1, 2},
